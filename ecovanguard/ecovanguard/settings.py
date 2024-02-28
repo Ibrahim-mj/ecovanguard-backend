@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise middleware
     "django.contrib.sessions.middleware.SessionMiddleware",
      "corsheaders.middleware.CorsMiddleware", # CORS middleware
     "django.middleware.common.CommonMiddleware",
@@ -132,6 +133,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") # For Render deployment
+
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # Whitenoise storage
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
