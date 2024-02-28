@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "cloudinary_storage",
     "cloudinary",
     "drf_spectacular",
+    "corsheaders",
+
     # Local apps
     "users.apps.UsersConfig",
     "blog.apps.BlogConfig",
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+     "corsheaders.middleware.CorsMiddleware", # CORS middleware
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -196,3 +199,6 @@ SPECTACULAR_SETTINGS = {
     "SCHEMA_PATH_PREFIX": "/api/",
     "COMPONENT_SPLIT_REQUEST": True,
 }
+
+# CORS POLICY
+CORS_ALLOW_ALL_ORIGINS = True
