@@ -1,3 +1,8 @@
-from django.contrib import admin
+# from django.contrib import admin
 
-# Register your models here.
+# from .models import User, UserProfile, ExecutivePosition, ExecutiveProfile
+
+# admin.site.register(User)
+# admin.site.register(UserProfile)
+# admin.site.register(ExecutivePosition)
+# admin.site.register(ExecutiveProfile)
