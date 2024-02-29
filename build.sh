@@ -11,3 +11,6 @@ python manage.py collectstatic --no-input
 
 # Apply any outstanding database migrations
 python manage.py migrate
+
+# Generate schema
+python manage.py spectacular --color --file schema.yml
