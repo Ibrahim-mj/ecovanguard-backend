@@ -6,7 +6,7 @@ set -o errexit
 pip install -r requirements.txt
 
 # Convert static asset files
-npm install && npm run remove-css-comments
+# npm install && npm run remove-css-comments
 python manage.py collectstatic --no-input
 
 # Apply any outstanding database migrations

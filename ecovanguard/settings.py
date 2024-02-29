@@ -136,7 +136,7 @@ STATIC_URL = "static/"
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") # For Render deployment
 
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # Whitenoise storage
+    STATICFILES_STORAGE = 'ecovanguard.storage_backends.CustomStaticFilesStorage' # Custom storage backend that inherits from CompressedManifestStaticFilesStorage. This is to ignore postprocess errors when running collectstatic
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
