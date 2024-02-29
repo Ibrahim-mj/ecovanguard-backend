@@ -1,0 +1,9 @@
+{
+    "devDependencies": {
+        "postcss-cli": "^8.3.1",
+        "postcss-discard-comments": "^5.1.2"
+    },
+    "scripts": {
+        "remove-css-comments": "postcss --use postcss-discard-comments --replace '**/*.css'"
+    }
+}
