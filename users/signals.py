@@ -43,6 +43,6 @@ def send_welcome_email(sender, instance, created, **kwargs):
         message = f"Hello {name},\n\nWelcome to EcoVaguard Club UI. Your membership ID is {membership_id}."
         html_message = f"<p>Hello {name},</p><p>Welcome to EcoVaguard Club UI. Your membership ID is {membership_id}.</p>"
         try:
-            send_mail(subject, message, html_message=html_message, from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[email], fail_silently=True)
+            send_mail(subject, message, html_message=html_message, from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[email])
         except Exception:
-            send_mail(subject, message, html_message=html_message, from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[email], fail_silently=True)
+            send_mail(subject, message, html_message=html_message, from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[email])
