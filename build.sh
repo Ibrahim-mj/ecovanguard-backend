@@ -14,3 +14,6 @@ python manage.py migrate
 
 # Generate schema
 python manage.py spectacular --color --file schema.yml
+
+# Command to load data
+python manage.py loaddata data.json
