@@ -125,23 +125,28 @@ class AccountVerificationView(generics.RetrieveAPIView):
             redirect_url = f"{settings.FRONTEND_URL}/login?verified=false&exception={e}"
             return HttpResponseRedirect(redirect_url)
 
-class ResendVerificationEmailView(APIView):
+class ResendVerificationEmailView(generics.GenericAPIView):
     """
-    Takes email address and resend verification email to user.
+    Takes email address, redirect_url and resend verification email to user.
     """
-    serializer = ResendVerificationEmailSerializer
+    serializer_class = ResendVerificationEmailSerializer
 
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
+        redirect_url = request.dat.get('redirect_url')
         try:
             user = User.objects.get(email=email)
             if user.is_active:
                 return Response({"message": "Account is already verified."}, status=status.HTTP_400_BAD_REQUEST)
             token = user.generate_jwt_token()
             subject = "EcoVanguard Club - Verify your email"
-            verification_link = request.build_absolute_uri(
+            base_url = request.build_absolute_uri(
                 reverse("users:verify-email", kwargs={"token": token})
             )
+            if redirect_url:
+                verification_link = f"{base_url}?redirect_url={redirect_url}"  # Adds redirect URL to verification link if provided
+            else:
+                verification_link = base_url
             message = f"Hello {user.full_name},\n\nPlease verify your email by clicking on the link below:\n\n{verification_link}\n\n This link will expire in 24 hours.\n\nIf you did not request a new verification email, please ignore this email.\n\nBest regards,\nEcoVanguard Club"
             html_message = f"<p>Hello {user.full_name},</p><p>Please verify your email by clicking on the link below:</p><p><a href='{verification_link}'>Verify Email</a></p><p>This link will expire in 24 hours.</p><p>If you did not request a new verification email, please ignore this email.</p><p>Best regards,<br>EcoVanguard Club</p>"
             send_mail(
