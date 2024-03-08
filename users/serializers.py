@@ -42,7 +42,7 @@ class UserSerializer(serializers.ModelSerializer):
         required=False,
     )
     password = serializers.CharField(write_only=True)
-    user_type = serializers.ChoiceField(choices=User.USER_TYPES)
+    user_type = serializers.ChoiceField(choices=User.USER_TYPES, required=False)
 
     class Meta:
         model = User
@@ -103,6 +103,8 @@ class UniversityStudentProfileSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = self.context.get("request").user
+        user.user_type = User.USER_TYPES[1][0]
+        user.save()
         profile = UserProfile.objects.create(user=user, **validated_data)
         return profile
 
@@ -151,6 +153,8 @@ class ExecutiveProfileSerializer(UniversityStudentProfileSerializer):
 
     def create(self, validated_data):
         user = self.context.get("request").user
+        user.user_type = User.USER_TYPES[0][0]
+        user.save()
         profile = ExecutiveProfile.objects.create(user=user, **validated_data)
         return profile
 
@@ -182,6 +186,8 @@ class SecondaryStudentProfileSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = self.context.get("request").user
+        user.user_type = User.USER_TYPES[2][0]
+        user.save()
         profile = UserProfile.objects.create(user=user, **validated_data)
         return profile
 
