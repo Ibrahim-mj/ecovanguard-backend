@@ -1,7 +1,5 @@
 import datetime
 
-import cloudinary
-
 from django.contrib.auth import authenticate
 from django.conf import settings
 from django.utils.crypto import get_random_string

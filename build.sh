@@ -7,7 +7,7 @@ pip install -r requirements.txt
 
 # Convert static asset files
 # npm install && npm run remove-css-comments
-python manage.py collectstatic --no-input
+python manage.py collectstatic 
 
 # Apply any outstanding database migrations
 python manage.py migrate
