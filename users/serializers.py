@@ -28,6 +28,10 @@ class UserSerializer(serializers.ModelSerializer):
             ),
         ],
     )
+    username = serializers.CharField(
+        max_length=100,
+        required=False,
+    )
 
     full_name = serializers.CharField(
         max_length=100,
@@ -52,6 +56,7 @@ class UserSerializer(serializers.ModelSerializer):
             "user_type",
             "is_active",
             "is_staff",
+            "username",
         )
 
     def create(self, validated_data):
