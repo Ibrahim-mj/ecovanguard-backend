@@ -58,7 +58,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise middleware
     "django.contrib.sessions.middleware.SessionMiddleware",
-     "corsheaders.middleware.CorsMiddleware", # CORS middleware
+    "corsheaders.middleware.CorsMiddleware", # CORS middleware
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",

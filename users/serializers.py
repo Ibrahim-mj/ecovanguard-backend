@@ -369,11 +369,9 @@ class SetNewPasswordSerializer(serializers.Serializer):
 
 class ResendVerificationEmailSerializer(serializers.Serializer):
     email = serializers.EmailField(
-        validators=[
-            EmailValidator(message="Please, Enter a valid email address"),
-        ]
-    ),
-    redirect_url = serializers.CharField()
+
+    )
+    redirect_url = serializers.CharField(required=False) # has to be required
 
 
 class ExecutiveCreateSerializer(serializers.ModelSerializer):

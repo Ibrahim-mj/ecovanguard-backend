@@ -133,7 +133,7 @@ class ResendVerificationEmailView(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
-        redirect_url = request.dat.get('redirect_url')
+        redirect_url = request.data.get('redirect_url')
         try:
             user = User.objects.get(email=email)
             if user.is_active:
