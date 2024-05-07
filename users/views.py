@@ -273,6 +273,7 @@ class ResetPasswordTokenCheckView(generics.GenericAPIView):
                 return HttpResponseRedirect(f"{redirect_url}?token_valid=False")
         except jwt.InvalidTokenError:
             return HttpResponseRedirect(f"{redirect_url}?token_valid=False")
+        
 class ResetPasswordView(generics.GenericAPIView):
     """
     Takes the token and a new password and resets the user's password
