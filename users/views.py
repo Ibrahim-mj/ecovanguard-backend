@@ -38,6 +38,7 @@ class AccountCreationView(generics.CreateAPIView):
     """
     Creates account for user and send verification email to them.
     Takes in redirect_url as query parameter to include in the verification link.
+    user_type options: EXECUTIVE, UNIVERSITY_STUDENT, SECONDARY_STUDENT
     """
 
     serializer_class = UserSerializer
