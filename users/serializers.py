@@ -81,6 +81,11 @@ class UserSerializer(serializers.ModelSerializer):
                 # fields.pop("user_type")
                 fields.pop("is_active")
         return fields
+    
+    def validate_user_type(self, user_type):
+        if user_type not in User.USER_TYPES:
+            raise serializers.ValidationError("Invalid user type. Valid User types are: EXECUTIVE, UNIVERSITY_STUDENT, SECONDARY_STUDENT")
+        return user_type
 
 
 class UniversityStudentProfileSerializer(serializers.ModelSerializer):
