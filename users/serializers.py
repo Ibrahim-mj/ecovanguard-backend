@@ -31,6 +31,11 @@ class UserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(
         max_length=100,
         required=False,
+        validators=[
+            UniqueValidator(
+                queryset=User.objects.all(), message="Username already taken"
+            ),
+        ],
     )
 
     full_name = serializers.CharField(
